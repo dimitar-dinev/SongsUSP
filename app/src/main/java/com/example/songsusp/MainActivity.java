@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.songsusp.db.AppDatabase;
 import com.example.songsusp.db.entities.Song;
+import com.example.songsusp.viewmodel.SongViewModel;
 
 import java.util.List;
 
@@ -20,18 +21,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         AppDatabase database = AppDatabase.getInstance(this);
 
-        database.getSongDao().getAllSongs().observe(this, new Observer<List<Song>>() {
-            @Override
-            public void onChanged(List<Song> songs) {
-                for(Song song : songs) {
-                    Log.d(TAG, song.getTitle() + " "  + song.getArtist());
-                }
+        SongRepository songRepository = new SongRepository(database);
+
+        SongViewModel songViewModel = new SongViewModel(songRepository);
+
+        songViewModel.getSongs().observe(this, songs -> {
+            for(Song song : songs) {
+                Log.d(TAG, song.getTitle() + " "  + song.getArtist());
             }
         });
-
 
     }
 }
