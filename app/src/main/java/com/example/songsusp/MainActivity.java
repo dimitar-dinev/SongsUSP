@@ -16,17 +16,14 @@ public class MainActivity extends AppCompatActivity {
 
     static final String TAG = "MYACTIVITY";
 
+    private SongViewModel songViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AppDatabase database = AppDatabase.getInstance(this);
-        AppExecutors appExecutors = new AppExecutors();
-
-        SongRepository songRepository = new SongRepository(database, appExecutors);
-
-        SongViewModel songViewModel = new SongViewModel(songRepository);
+        songViewModel = ((SongsApplication) getApplication()).appContainer.songViewModel;
 
         songViewModel.getSongs().observe(this, songs -> {
             for(Song song : songs) {
@@ -35,6 +32,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
        songViewModel.insert(new Song("DKD", "DKD", "DKDKD", 200, "dz", 2004));
-
     }
 }
