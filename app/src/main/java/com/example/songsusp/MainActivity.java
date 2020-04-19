@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AppDatabase database = AppDatabase.getInstance(this);
+        AppExecutors appExecutors = new AppExecutors();
 
-        SongRepository songRepository = new SongRepository(database);
+        SongRepository songRepository = new SongRepository(database, appExecutors);
 
         SongViewModel songViewModel = new SongViewModel(songRepository);
 
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, song.getTitle() + " "  + song.getArtist());
             }
         });
+
+       songViewModel.insert(new Song("DKD", "DKD", "DKDKD", 200, "dz", 2004));
 
     }
 }

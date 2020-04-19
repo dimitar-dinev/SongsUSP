@@ -11,9 +11,11 @@ public class SongRepository {
     private LiveData<List<Song>> songs;
 
     private final AppDatabase appDatabase;
+    private final AppExecutors appExecutors;
 
-    SongRepository(final AppDatabase appDatabase) {
+    SongRepository(final AppDatabase appDatabase, final AppExecutors appExecutors) {
         this.appDatabase = appDatabase;
+        this.appExecutors = appExecutors;
 
         songs = this.appDatabase.getSongDao().getAllSongs();
     }
@@ -26,15 +28,15 @@ public class SongRepository {
      * Methods accessing the database
      */
     public void insertSong(Song song) {
-        // TODO:
+        appExecutors.diskIO().execute(() -> appDatabase.getSongDao().insert(song));
     }
 
     public void updateSong(Song song) {
-        // TODO:
+        appExecutors.diskIO().execute(() -> appDatabase.getSongDao().update(song));
     }
 
     public void deleteSong(int id) {
-        // TODO:
+        appExecutors.diskIO().execute(() -> appDatabase.getSongDao().delete(id));
     }
 
 }
