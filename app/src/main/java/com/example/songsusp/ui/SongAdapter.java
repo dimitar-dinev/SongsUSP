@@ -38,6 +38,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
     }
 
 
+    Song getSong(int position) {
+        return this.songsList.get(position);
+    }
+
     @NonNull
     @Override
     public SongViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
