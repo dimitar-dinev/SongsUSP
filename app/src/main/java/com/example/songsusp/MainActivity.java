@@ -14,7 +14,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    static final String TAG = "MYACTIVITY";
+    static final String TAG = "MYACTIVITY"; //constant tag 
 
     private SongViewModel songViewModel;
 
