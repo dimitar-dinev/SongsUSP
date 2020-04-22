@@ -17,6 +17,14 @@ import java.util.List;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
 
+    public interface onSongClickListener {
+        void onSongClick(Song song);
+    }
+
+    private onSongClickListener listener;
+
+
+
     private List<Song> songsList = new ArrayList<>();
 
     class SongViewHolder extends RecyclerView.ViewHolder {
@@ -29,12 +37,22 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             titleTextView = itemView.findViewById(R.id.titleTextView);
             artistTextView = itemView.findViewById(R.id.artistTextView);
 
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onSongClick(songsList.get(position));
+                }
+            });
         }
     }
 
     void setSongsList(List<Song> SongsList) {
         this.songsList = SongsList;
         notifyDataSetChanged();
+    }
+
+    void setListener(onSongClickListener listener) {
+        this.listener = listener;
     }
 
 

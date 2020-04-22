@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.songsusp.R;
 import com.example.songsusp.SongsApplication;
@@ -20,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AddSongFragment.AddSongListener {
+public class MainActivity extends AppCompatActivity implements AddSongFragment.AddSongListener, SongAdapter.onSongClickListener {
 
     static final String TAG = "MYACTIVITY"; //constant tag
 
@@ -49,7 +50,15 @@ public class MainActivity extends AppCompatActivity implements AddSongFragment.A
         FloatingActionButton fab = findViewById(R.id.addButton);
         fab.setOnClickListener(v -> showAddFragmentDialog());
 
+        songAdapter.setListener(this);
+
         addOnItemSwipeDelete(recyclerView, ItemTouchHelper.LEFT);
+    }
+
+    @Override
+    public void onSongClick(Song song) {
+        Toast.makeText(this, "Clicked " + song.getTitle(), Toast.LENGTH_SHORT).show();
+        //TODO: implement edit dialog
     }
 
     private void showAddFragmentDialog() {
