@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.songsusp.R;
@@ -21,7 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AddSongFragment.AddSongListener, SongAdapter.onSongClickListener {
+public class MainActivity extends AppCompatActivity implements AddSongFragment.AddSongListener, SongAdapter.onSongClickListener, EditSongFragment.EditSongListener {
 
     static final String TAG = "MYACTIVITY"; //constant tag
 
@@ -58,7 +59,10 @@ public class MainActivity extends AppCompatActivity implements AddSongFragment.A
     @Override
     public void onSongClick(Song song) {
         Toast.makeText(this, "Clicked " + song.getTitle(), Toast.LENGTH_SHORT).show();
-        //TODO: implement edit dialog
+        EditSongFragment songFragment = EditSongFragment.newInstance(song);
+        songFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
+
+        songFragment.show(getSupportFragmentManager(), "edit_fragment");
     }
 
     private void showAddFragmentDialog() {
@@ -70,6 +74,11 @@ public class MainActivity extends AppCompatActivity implements AddSongFragment.A
     @Override
     public void onAddSong(final Song song) {
         songViewModel.insert(song);
+    }
+
+    @Override
+    public void onEditSong(final Song song) {
+        songViewModel.update(song);
     }
 
     public void onDeleteSong(final int id) { songViewModel.delete(id);}
