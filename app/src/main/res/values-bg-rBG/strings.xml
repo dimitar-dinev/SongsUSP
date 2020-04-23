@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Песни</string>
+    <string name="title">Заглавие</string>
+    <string name="artist">Изпълнител</string>
+    <string name="album">Албум</string>
+    <string name="duration">Времетраене</string>
+    <string name="genre">Жанр</string>
+    <string name="year">Година</string>
+
+    <string name="add_dialog_title">Добави песен</string>
+    <string name="edit_dialog_title">Промени песен</string>
+    <string name="confirm">Потвърди</string>
+    <string name="filter">Филтри</string>
+    <string name="filter_by_title">Според заглаваие</string>
+    <string name="filter_by_artist">Според изпълнител</string>
+    <string name="filter_by_genre">Според жанр</string>
+    <string name="search">Търси</string>
+    <string name="title_validator_error">Заглавието трябва да съдържа поне една буква!</string>
+    <string name="artist_validator_error">Изпълнителят трябва да съдържа поне 2 букви!</string>
+    <string name="year_validator_error_empty">Годината не може да е празна</string>
+    <string name="duration_validation_error">Времетраенето трябва да бъде специфицирано по следния начин: [M]М:СС!</string>
+    <string name="year_validation_error">Годината трябва да е между %d и %d.</string>
+    <string name="album_validator_error">---</string>
+    <string name="genre_validator_error">---</string>
+</resources>
