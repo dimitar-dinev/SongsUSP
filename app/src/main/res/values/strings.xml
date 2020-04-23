@@ -8,4 +8,11 @@
     <string name="genre_validator_error">---</string>
     <string name="duration_validation_error">The duration should be specified with the following pattern: [m]m:ss</string>
     <string name="year_validation_error">The year should be between %d and %d .</string>
+
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="filter_by_title">By title</string>
+    <string name="filter_by_artist">By artist</string>
+    <string name="filter_by_genre">By genre</string>
+
 </resources>

@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,13 +26,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AddSongFragment.AddSongListener, SongAdapter.onSongClickListener, EditSongFragment.EditSongListener {
 
-    static final String TAG = "MYACTIVITY"; //constant tag
+    static final String TAG = "MYACTIVITY";
 
     private SongViewModel songViewModel;
 
-
     private SongAdapter songAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,5 +97,12 @@ public class MainActivity extends AppCompatActivity implements AddSongFragment.A
             }
 
         }).attachToRecyclerView(recyclerView);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 }

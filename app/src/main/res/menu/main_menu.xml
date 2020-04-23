@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/app_bar_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        android:focusableInTouchMode="true"
+        app:showAsAction="always|collapseActionView"
+        android:enabled="true"
+        android:visible="true"
+        app:actionViewClass="android.widget.SearchView" />
+
+    <item
+        android:title="@string/filter"
+        android:visible="true"
+        android:enabled="true"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/menu_filterTitle"
+                android:title="@string/filter_by_title"
+                android:icon="@drawable/ic_check"
+                app:showAsAction="never"
+                app:actionViewClass="android.widget.CheckBox" />
+
+            <item
+                android:id="@+id/menu_filterArtist"
+                android:title="@string/filter_by_artist"
+                app:showAsAction="never"
+                app:actionViewClass="android.widget.CheckBox" />
+
+            <item
+                android:id="@+id/menu_filterGenre"
+                android:title="@string/filter_by_genre"
+                app:showAsAction="never"
+                app:actionViewClass="android.widget.CheckBox" />
+        </menu>
+    </item>
+</menu>
