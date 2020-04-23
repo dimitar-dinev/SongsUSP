@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">SongsUSP</string>
-
+    <string name="app_name">Songs</string>
     <string name="title_validator_error">The title of the song should be at least 1 character long!</string>
     <string name="artist_validator_error">The artist\'s name should be at least 2 characters long!</string>
     <string name="album_validator_error">---</string>
@@ -8,6 +7,18 @@
     <string name="genre_validator_error">---</string>
     <string name="duration_validation_error">The duration should be specified with the following pattern: [m]m:ss</string>
     <string name="year_validation_error">The year should be between %d and %d .</string>
+
+    <string name="edit_dialog_title">Edit song</string>
+    <string name="add_dialog_title">Add song</string>
+
+    <string name="confirm">Confirm</string>
+
+    <string name="title">Title</string>
+    <string name="artist">Artist</string>
+    <string name="album">Album</string>
+    <string name="duration">Duration</string>
+    <string name="genre">Genre</string>
+    <string name="year">Year</string>
 
     <string name="search">Search</string>
     <string name="filter">Filter</string>

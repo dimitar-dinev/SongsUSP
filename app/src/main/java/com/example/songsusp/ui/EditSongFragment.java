@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.songsusp.R;
 import com.example.songsusp.db.SongValidator;
 import com.example.songsusp.db.entities.Song;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class EditSongFragment extends DialogFragment {
 
@@ -64,22 +65,22 @@ public class EditSongFragment extends DialogFragment {
             dialog.setCanceledOnTouchOutside(false);
         }
 
-        final EditText titleEditText = view.findViewById(R.id.titleEditText);
-        final EditText artistEditText = view.findViewById(R.id.artistEditText);
-        final EditText albumEditText = view.findViewById(R.id.albumEditText);
-        final EditText durationEditText = view.findViewById(R.id.durationEditText);
-        final EditText genreEditText = view.findViewById(R.id.genreEditText);
-        final EditText yearEditText = view.findViewById(R.id.yearEditText);
+        final TextInputLayout titleEditText = view.findViewById(R.id.titleEditText);
+        final TextInputLayout artistEditText = view.findViewById(R.id.artistEditText);
+        final TextInputLayout albumEditText = view.findViewById(R.id.albumEditText);
+        final TextInputLayout durationEditText = view.findViewById(R.id.durationEditText);
+        final TextInputLayout genreEditText = view.findViewById(R.id.genreEditText);
+        final TextInputLayout yearEditText = view.findViewById(R.id.yearEditText);
 
-        titleEditText.setText(getArguments().getString(TITLE_KEY, ""));
-        artistEditText.setText(getArguments().getString(ARTIST_KEY, ""));
-        albumEditText.setText(getArguments().getString(ALBUM_KEY, ""));
-        durationEditText.setText(getArguments().getString(DURATION_KEY, ""));
-        genreEditText.setText(getArguments().getString(GENRE_KEY, ""));
+        titleEditText.getEditText().setText(getArguments().getString(TITLE_KEY, ""));
+        artistEditText.getEditText().setText(getArguments().getString(ARTIST_KEY, ""));
+        albumEditText.getEditText().setText(getArguments().getString(ALBUM_KEY, ""));
+        durationEditText.getEditText().setText(getArguments().getString(DURATION_KEY, ""));
+        genreEditText.getEditText().setText(getArguments().getString(GENRE_KEY, ""));
         if (getArguments().getString(YEAR_KEY, "").equals("0")) {
-            yearEditText.setText("");
+            yearEditText.getEditText().setText("");
         } else {
-            yearEditText.setText(getArguments().getString(YEAR_KEY, ""));
+            yearEditText.getEditText().setText(getArguments().getString(YEAR_KEY, ""));
         }
 
 
@@ -89,12 +90,12 @@ public class EditSongFragment extends DialogFragment {
         final Button confirmButton = view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(v -> {
 
-            final String title = titleEditText.getText().toString();
-            final String artist = artistEditText.getText().toString();
-            final String album = albumEditText.getText().toString();
-            final String duration = durationEditText.getText().toString();
-            final String genre = genreEditText.getText().toString();
-            final String yearEditTextValue = yearEditText.getText().toString();
+            final String title = titleEditText.getEditText().getText().toString();
+            final String artist = artistEditText.getEditText().getText().toString();
+            final String album = albumEditText.getEditText().getText().toString();
+            final String duration = durationEditText.getEditText().getText().toString();
+            final String genre = genreEditText.getEditText().getText().toString();
+            final String yearEditTextValue = yearEditText.getEditText().getText().toString();
             final int year = (yearEditTextValue.isEmpty()) ? 0 : Integer.parseInt(yearEditTextValue);
 
             if (SongValidator.isSongValid(title, artist, album, duration, genre, year)) {
