@@ -3,6 +3,8 @@ package com.example.songsusp.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
+public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> implements Filterable {
 
     public interface onSongClickListener {
         void onSongClick(Song song);
@@ -23,9 +25,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
     private onSongClickListener listener;
 
-
-
     private List<Song> songsList = new ArrayList<>();
+    private List<Song> fullSongsList;
 
     class SongViewHolder extends RecyclerView.ViewHolder {
 
@@ -48,6 +49,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
     void setSongsList(List<Song> SongsList) {
         this.songsList = SongsList;
+        this.fullSongsList = new ArrayList<>(songsList);
         notifyDataSetChanged();
     }
 
@@ -77,5 +79,53 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
     public int getItemCount() {
         return songsList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+
+            if (constraint == null || constraint.length() == 0) {
+                results.values = fullSongsList;
+            } else {
+                String keyword = constraint.toString().toLowerCase().trim();
+
+                List<Song> filteredSongs = new ArrayList<>();
+                for(Song song: fullSongsList) {
+                    switch (MainActivity.currentFilter) {
+                        case TITLE:
+                            if (song.getTitle().toLowerCase().contains(keyword)) {
+                                filteredSongs.add(song);
+                            }
+                            break;
+                        case GENRE:
+                            if (song.getGenre().toLowerCase().contains(keyword)) {
+                                filteredSongs.add(song);
+                            }
+                            break;
+                        case ARTIST:
+                            if (song.getArtist().toLowerCase().contains(keyword)) {
+                                filteredSongs.add(song);
+                            }
+                            break;
+                    }
+                }
+                results.values = filteredSongs;
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            songsList.clear();
+            songsList.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 }
